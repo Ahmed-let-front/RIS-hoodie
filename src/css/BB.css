@@ -1,0 +1,301 @@
+@import "tailwindcss";
+@font-face {
+  font-family: "Bungee";
+  src: url("/fonts/Bungee-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@custom-variant hover (&:hover);
+/* start variable */
+@theme {
+  /*  Navy Colors (Backgrounds & Layout)  */
+  --color-navy-main: #0f1f2d;
+  --color-navy-light: #14283a;
+  --color-navy-card: #1c3247;
+  /* Pink Accent Colors (Buttons & Highlights) */
+  --color-pink-main: #f2a6c9;
+  --color-pink-light: #f7b6d6;
+  --color-pink-dark: #e88bb8;
+  /*  Neutral & Background Colors  */
+  --color-white: #ffffff;
+  --color-off-white: #f6f7fb;
+  /*  Text Colors  */
+  --color-text-light: #d6d9e0;
+  --color-text-muted: #b8bdc7;
+  --color-text-dark: #2b2f38;
+  /* main transation */
+  --main-transition: 0.3s ease-in-out;
+  --main-animate: transform 4s ease-in-out infinite alternate;
+  /* breakpoints */
+  --breakpoint-md: 992px;
+}
+/* end variabel */
+@layer base {
+  html {
+    font-size: 62.5%;
+  }
+}
+@layer components {
+  .logic-berger {
+    &:has(#berger-bar:checked) .overlay,
+    &:has(a:hover) .overlay {
+      backdrop-filter: blur(5px);
+      pointer-events: auto;
+      &:has(#berger-bar:checked) [for="berger-bar"] {
+        @apply scale-125;
+      }
+    }
+  }
+  .button-shape {
+    @apply outline-1 outline-white outline-offset-5 text-white border-none py-8 w-[80%] mx-auto rounded-3xl font-bold uppercase tracking-[1px] cursor-pointer overflow-hidden z-2 relative bg-pink-main main-transition;
+    box-shadow: 0 0 5px;
+    &:hover {
+      @apply scale-95;
+    }
+    &::before {
+      @apply content-[''] absolute z-[-1] left-0 top-0 size-full main-transition bg-pink-dark translate-x-[-100%];
+    }
+    &:hover::before {
+      @apply translate-x-0;
+    }
+  }
+}
+@layer utilities {
+  .bungee {
+    font-family: "Bungee", sans-serif;
+  }
+}
+@utility main-transition {
+  transition: var(--main-transition);
+}
+@utility container {
+  @apply mx-auto px-6 max-w-none;
+  /*start  media for container */
+  /* small screen */
+  @media (width >= 48rem) {
+    inline-size: 750px;
+  }
+  /* mid screen */
+  @media (width >= 62rem) {
+    inline-size: 970px;
+  }
+  /* large screen */
+  @media (width >= 75rem) {
+    inline-size: 1170px;
+  }
+}
+@utility main-animate {
+  animation: var(--main-animate);
+}
+/* font Bungee */
+/* font Bungee */
+html {
+  @apply scroll-smooth;
+}
+body {
+  font-size: 1.6rem;
+}
+/* start design mobile */
+/* start header */
+.header {
+  .container {
+    figure {
+      img {
+        @apply size-16 rounded-full;
+      }
+    }
+    nav {
+      a {
+        @apply uppercase tracking-[3px] main-transition text-black relative bg-clip-text font-bold text-transparent bg-gradient-to-b from-white from-[30%] to-[#e2e8f0] block;
+        text-shadow: 2px 4px 6px rgba(0, 0, 0, 0.5);
+        &::after {
+          @apply content-[""] absolute top-[calc(100%+5px)] w-[0] left-1/2 main-transition translate-x-[-50%] h-[1px] bg-gradient-to-b from-white from-[30%] to-[#e2e8f0] text-transparent;
+        }
+        &:hover::after {
+          @apply w-1/2;
+        }
+        &:hover {
+          @apply scale-120;
+        }
+      }
+    }
+    [for="berger-bar"] {
+      i {
+        cursor: pointer;
+        background: linear-gradient(to bottom, #ffffff 30%, #e2e8f0 100%);
+        -webkit-background-clip: text;
+        color: transparent;
+        text-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
+      }
+    }
+  }
+}
+/* end header */
+/* section hero */
+.hero {
+  background-image: url("/images/main-img.png");
+  .container {
+    .text {
+      h1 {
+        -webkit-text-stroke: 2px var(--color-text-light);
+        background-image: linear-gradient(
+          180deg,
+          #ffd1e6 0%,
+          #f6a6c9 45%,
+          #e87fb4 100%
+        );
+        font-size: clamp(4.5rem, 5vw, 9rem);
+      }
+      span {
+        font-size: clamp(3.2rem, 8vw, 5rem);
+        text-shadow: 2px 4px 6px rgba(0, 0, 0, 0.3);
+      }
+      p {
+        text-shadow: 0 0 10px;
+        font-size: clamp(1rem, 8vw, 2rem);
+        line-height: 1.6;
+      }
+    }
+  }
+}
+.images-t {
+  figure {
+    @apply h-[325px];
+    & > * {
+      @apply h-full mx-auto main-animate;
+    }
+  }
+}
+/* section hero */
+/* start section hoodie */
+.hoddie-oreder {
+  background-image: url("/images/second-img.png");
+  .container {
+    .left,
+    .right {
+      background-image: url("/images/main-img.png");
+      @apply relative bg-cover rounded-[2rem] flex flex-col items-center  h-200 py-[0px_4rem] main-transition shadow-[5px_5px_10px_0px];
+      &:hover {
+        @apply scale-97;
+      }
+      figure {
+        @apply h-100 m-auto aspect-square;
+        img {
+          @apply h-full main-animate mx-auto;
+        }
+      }
+      .price {
+        @apply text-white flex items-center gap-12 justify-between backdrop-blur-[10rem] w-[90%] h-40 px-16 rounded-[5rem] shadow-[5px_5px_10px_black];
+        span {
+          @apply p-4 rounded-full;
+        }
+        button {
+          @apply py-6  w-full shadow-none;
+        }
+      }
+    }
+  }
+}
+@keyframes transform {
+  50% {
+    transform: translatey(1rem);
+  }
+  100% {
+    transform: translateY(-1rem);
+  }
+}
+/* end section hoodie */
+/* customize */
+.customize {
+  background-image: url("/images/main-img.png");
+  .container {
+    .text {
+      p {
+        text-shadow: 5px 5px 0 black;
+      }
+    }
+    .your-cus {
+      background-image: url("/images/second-img.png");
+      form {
+        .choose {
+          @apply w-[80%] mx-auto text-pink-dark;
+          #sleeve-number,
+          #front-name {
+            @apply mx-[0px_1.5rem] accent-navy-card;
+          }
+        }
+      }
+    }
+    figure {
+      background-image: url("/images/second-img.png");
+    }
+  }
+}
+/* customize */
+/* our hoodie */
+.our-hoodie {
+  background-image: url("/images/second-img.png");
+  .container {
+    .boxes {
+      .box {
+        @apply flex flex-col gap-8 bg-cover rounded-[3rem] p-[4rem_3rem] main-transition shadow-[5px_5px_10px_gray] hover:scale-97;
+        background-image: url("/images/second-img.png");
+        i {
+          @apply mx-auto block text-pink-main text-3xl;
+        }
+        h3 {
+          @apply text-pink-dark my-[0px_1.5rem];
+        }
+        p {
+          @apply text-navy-main;
+        }
+      }
+    }
+  }
+}
+/* our hoodie */
+/* start footer */
+#footer {
+  background-image: url("/images/footer-image.jpg");
+  .container {
+    .inputs {
+      @apply flex mx-auto w-fit gap-8;
+      input {
+        @apply block text-center p-8 rounded-[4rem] bg-navy-main text-white border-none w-full focus:outline-none;
+      }
+    }
+  }
+  .foot {
+    background-image: url("/images/main-img.png");
+  }
+}
+/* end footer */
+/* end design mobile */
+/* start media for desktop */
+@media (width >= 992px) {
+  .hero {
+    .container {
+      .images-t {
+        figure {
+          @apply h-[550px] aspect-square;
+        }
+      }
+    }
+  }
+  .hoddie-oreder {
+    .images {
+      & > * {
+        inline-size: 50%;
+      }
+    }
+  }
+  .our-hoodie {
+    .container {
+      .boxes {
+        @apply grid grid-cols-2;
+      }
+    }
+  }
+}
+/* end media for desktop */
