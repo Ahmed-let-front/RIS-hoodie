@@ -72,7 +72,6 @@ I am open to freelance work and technical discussions.
 
 ---
 
-## 🇪🇬 Arabic Section (القسم العربي)
 
 ### 📝 نبذة عن المشروع
 
